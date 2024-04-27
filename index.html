@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>exporting pdf file using html</title>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: black;
+        background-repeat: no-repeat;
+      background-image: url(/index-edit-pdf-img.png);
+    }
+    form {
+      display: grid;
+      margin-left: 150px;
+      margin-top: 50px;
+    }
+    form input {
+      margin-left: 400px;
+      margin-top:60px;
+      height: 50px;
+      color: red;
+      width: 40%;
+      border-radius: 10px;
+      font-family: sans-serif;
+      font-size: 30px;
+    }
+    button {
+      font-family: serif;
+      font-size: 30px;
+      border-radius: 5px;
+      margin-left: 47%;
+      margin-top: 20px;
+      background-color: green;
+      color: white;
+      width: 100px;
+    }
+  </style>
+  <body>
+    <form id="form">
+      <input type="text" id="text" placeholder="text" />
+      <input
+        type="number"
+        id="fontsize"
+        placeholder="number should be 20 or more than 20"
+      />
+      <button id="button">Create Pdf</button>
+    </form>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.0.272/jspdf.debug.js"
+    ></script>
+    <script>
+      var form = document.getElementById("form");
+      form.addEventListener("submit", function (event) {
+        event.preventDefault(); //to stop reload page
+        var text = document.getElementById("text").value;
+        var fontsize = document.getElementById("fontsize").value;
+        //  <!-- The line `var doc = new jsPDF()` is creating a new instance of the jsPDF object. This object is
+        //  provided by the jsPDF library that is included in the script tag in the HTML file. -->
+        var doc = new jsPDF(); // Sure! The code you've provided is using the jsPDF library to create a new PDF document..
+        doc.setFontSize(fontsize);
+        doc.text(text, 10, 10);
+        doc.save("output.pdf");
+      });
+    </script>
+  </body>
+</html>
